@@ -1,20 +1,41 @@
-from serpapi import GoogleSearch
-import pandas as pd
+# from serpapi import GoogleSearch
+# import pandas as pd
+# import streamlit as st
+# import matplotlib.pyplot as plt
 import streamlit as st
+import serpapi
+import pandas as pd
 import matplotlib.pyplot as plt
 
+st.set_page_config(
+    layout="centered", page_title="Price Compare", page_icon="🔎",
+    initial_sidebar_state="collapsed")
+
+
+# def compare(med_name):
+#     params = {
+#         "engine": "google_shopping",
+#         "gl": "in",
+#         "q": med_name,
+#         "api_key": "208564a91e700566b79df6a6da5b149d897081cca8b69c170ec9caf3ee4e3652"
+#     }
+#     search = GoogleSearch(params)
+#     results = search.get_dict()
+#     shopping_results = results["shopping_results"]
+#     return shopping_results
 
 def compare(med_name):
     params = {
-        "engine": "google_shopping",
-        "gl": "in",
-        "q": med_name,
-        "api_key": "208564a91e700566b79df6a6da5b149d897081cca8b69c170ec9caf3ee4e3652"
+    "engine": "google_shopping",
+    "q": med_name,
+    "api_key": "208564a91e700566b79df6a6da5b149d897081cca8b69c170ec9caf3ee4e3652",
+    "gl" : "in"
     }
-    search = GoogleSearch(params)
+
+    search = serpapi.GoogleSearch(params)
     results = search.get_dict()
     shopping_results = results["shopping_results"]
-    return shopping_results
+    return(shopping_results)
 
 
 
@@ -90,3 +111,4 @@ if med_name is not None:
         ax.pie(med_price, labels=med_comp,shadow=True, startangle=90)
         ax.axis('Equal')
         st.pyplot(fig)
+
