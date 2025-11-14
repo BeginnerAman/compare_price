@@ -6,6 +6,7 @@ import streamlit as st
 import serpapi
 import pandas as pd
 import matplotlib.pyplot as plt
+from serpapi import GoogleSearch
 
 st.set_page_config(
     layout="centered", page_title="Price Compare", page_icon="🔎",
@@ -111,4 +112,5 @@ if med_name is not None:
         ax.pie(med_price, labels=med_comp,shadow=True, startangle=90)
         ax.axis('Equal')
         st.pyplot(fig)
+
 
